@@ -1,7 +1,12 @@
 {
     "autoload": {
         "psr-4": {
-            "Thiiagoms\\": "src"
+            "Thiiagoms\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
         }
     },
     "require": {
@@ -9,5 +14,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^8.1"
+    },
+    "scripts": {
+        "tests": "phpunit --testdox tests"
     }
 }
