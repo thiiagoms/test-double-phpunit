@@ -62,4 +62,13 @@ class EncerradorServiceTest extends TestCase
 
         $this->encerradorService->encerra();
     }
+
+    public function testDeveEnviarLeilaoPorEmailApenasQuandoLeilaoForFinalizado(): void
+    {
+        $this->enviadorEmailService->expects($this->exactly(2))
+            ->method('notificarTerminoLeilao')
+            ->willReturnCallback(fn (Leilao $leilao) => $this->assertTrue($leilao->estaFinalizado()));
+
+        $this->encerradorService->encerra();
+    }
 }
