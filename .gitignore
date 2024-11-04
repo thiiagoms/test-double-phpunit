@@ -25,3 +25,5 @@ composer.phar
 /build/
 
 # End of https://www.toptal.com/developers/gitignore/api/composer,phpunit
+
+*.txt
