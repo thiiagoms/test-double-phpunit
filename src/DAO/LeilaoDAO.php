@@ -16,7 +16,7 @@ class LeilaoDAO
         $this->con = $con;
     }
 
-    public function salva(Leilao $leilao): void
+    public function salva(Leilao $leilao): Leilao
     {
         $sql = 'INSERT INTO leiloes (descricao, finalizado, dataInicio) VALUES (?, ?, ?)';
         $stm = $this->con->prepare($sql);
@@ -24,6 +24,12 @@ class LeilaoDAO
         $stm->bindValue(2, $leilao->estaFinalizado(), \PDO::PARAM_BOOL);
         $stm->bindValue(3, $leilao->recuperarDataInicio()->format('Y-m-d'));
         $stm->execute();
+
+        return new Leilao(
+            $leilao->recuperarDescricao(),
+            $leilao->recuperarDataInicio(),
+            (int) $this->con->lastInsertId()
+        );
     }
 
     /**
@@ -55,12 +61,12 @@ class LeilaoDAO
 
         foreach ($dados as $dado) {
 
-            $leilao = new Leilao($dado['descricao'], new \DateTimeImmutable($dado['dataInicio']), $dado['id']);
+            $leilao = new Leilao($dado['descricao'], new \DateTimeImmutable($dado['dataInicio']), (int) $dado['id']);
 
             if ($dado['finalizado']) {
                 $leilao->finaliza();
             }
-            
+
             $leiloes[] = $leilao;
         }
 

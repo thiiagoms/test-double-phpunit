@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Services;
+namespace Tests\Unit\Services;
 
 use DomainException;
 use PHPUnit\Framework\MockObject\MockObject;

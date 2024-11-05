@@ -22,6 +22,7 @@ class EncerradorService
         $leiloes = $this->leilaoDAO->recuperarNaoFinalizados();
 
         foreach ($leiloes as $leilao) {
+
             if ($leilao->temMaisDeUmaSemana()) {
 
                 try {

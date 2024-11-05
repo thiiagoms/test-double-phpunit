@@ -10,7 +10,7 @@ use Thiiagoms\Model\Leilao;
 class AvaliadorService
 {
     private float $menorValor = INF;
-    
+
     private float $maiorValor = 0;
 
     private array $maiores;
@@ -54,7 +54,7 @@ class AvaliadorService
      * @param Leilao $leilao
      * @return Lance[]|array
      */
-    private function avaliaTresMaioresLances(Leilao $leilao):  array
+    private function avaliaTresMaioresLances(Leilao $leilao): array
     {
         $lances = $leilao->getLances();
         usort($lances, function (Lance $lance1, Lance $lance2) {

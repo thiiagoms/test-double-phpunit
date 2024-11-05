@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Domain;
+namespace Tests\Unit\Domain;
 
 use DomainException;
 use PHPUnit\Framework\TestCase;
