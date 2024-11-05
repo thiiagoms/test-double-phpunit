@@ -8,7 +8,17 @@ services:
     volumes:
       - ./:/var/www
     networks:
-      - laravel
+      - phptdd
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www
+      - ./.devops/nginx/:/etc/nginx/conf.d/
+    networks:
+      - phptdd
 networks:
-  laravel:
+  phptdd:
     driver: bridge
